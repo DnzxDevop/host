@@ -4,11 +4,11 @@ import path from 'path'
 
 const BASE_DIR = path.join(process.cwd(), 'public', 'files')
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { path: string[] } }
-) {
-  const filePath = path.join(BASE_DIR, ...params.path)
+export async function GET(request: NextRequest) {
+  const { pathname } = new URL(request.url)
+  const pathParts = pathname.split('/').filter(Boolean) // Get path parts from the URL
+  
+  const filePath = path.join(BASE_DIR, ...pathParts)
 
   try {
     const stats = await fs.stat(filePath)
@@ -40,4 +40,3 @@ export async function GET(
     return NextResponse.json({ error: 'File not found' }, { status: 404 })
   }
 }
-
