@@ -1,6 +1,6 @@
 'use client'
 import { useRef } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,12 @@ const Login = () => {
   const toast = useRef(null);
 
   const correctPassword = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("authenticated");
+    if (isAuthenticated) {
+      router.push("/quantum");
+    }
+  }, [router]);
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === correctPassword) {
