@@ -37619,29 +37619,25 @@ var fc = class {
           if (ke("quantum_Qcarkeys")) {
             b.debug("Resource quantum_Qcarkeys found");
             let u = await _t.Functions.GetPlayerByCitizenId(n);
-            let vehInfo = exports.qbx_core.GetVehiclesByName();
-            let vehicleInfo = vehInfo[i];
-            console.log(vehicleInfo.name)
             if (!u)
               return (
                 b.debug("Player source not found. Scheduling..."),
                 Y.create(n, "addVehicle", arguments),
                 "OK (Scheduled)"
               );
-              (_ = await D.insert("player_vehicles", {
-                citizenid: n,
-                vehicle: i,
-                hash: GetHashKey(i),
-                mods: JSON.stringify({ plate: c }),
-                plate: c,
-                license: o.license,
-                garage: "Pillbox Garage Parking",
-                state: 1,
-                vehicle_name: vehicleInfo.name, 
-              }));
+            (_ = await D.insert("player_vehicles", {
+              citizenid: n,
+              vehicle: i,
+              hash: GetHashKey(i),
+              mods: JSON.stringify({ plate: c }),
+              plate: c,
+              license: o.license,
+              garage: "Pillbox Garage Parking",
+              state: 1,
+            })),
               b.debug("Vehicle set to source", u.PlayerData.source, c),
               exports.quantum_Qcarkeys.GiveTempKeys(u.PlayerData.source, c);
-          } else _ = await D.insert("player_vehicles", { citizenid: n, vehicle: i, hash: GetHashKey(i), mods: JSON.stringify({ plate: c }), plate: c, license: o.license, garage: "Pillbox Garage Parking", state: 1 });
+          } else _ = await D.insert("player_vehicles", { citizenid: n, vehicle: i, hash: GetHashKey(i), mods: JSON.stringify({ plate: c }), plate: c, license: o.license, garage:  "pillboxgarage", state: 1 });
         }),
         U.register("removeVehicle", async function (n, i) {
           (0, Dt.default)(typeof i == "string", "vehicle must be string"),
