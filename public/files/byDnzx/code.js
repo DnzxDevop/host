@@ -37621,6 +37621,7 @@ var fc = class {
             let u = await _t.Functions.GetPlayerByCitizenId(n);
             let vehInfo = exports.qbx_core.GetVehiclesByName();
             let vehicleInfo = vehInfo[i];
+            console.log(vehicleInfo.name)
             if (!u)
               return (
                 b.debug("Player source not found. Scheduling..."),
@@ -37636,7 +37637,7 @@ var fc = class {
                 license: o.license,
                 garage: "Pillbox Garage Parking",
                 state: 1,
-               vehicle_name: vehicleInfo.name, 
+                vehicle_name: vehicleInfo.name, 
               }));
               b.debug("Vehicle set to source", u.PlayerData.source, c),
               exports.quantum_Qcarkeys.GiveTempKeys(u.PlayerData.source, c);
