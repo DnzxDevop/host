@@ -37618,9 +37618,9 @@ var fc = class {
             _;
           if (ke("quantum_Qcarkeys")) {
             b.debug("Resource quantum_Qcarkeys found");
-            const vehInfo = exports['qbx_core']:GetVehiclesByName(); 
-            const vehicleInfo = vehInfo[i];
             let u = await _t.Functions.GetPlayerByCitizenId(n);
+            let vehInfo = exports.qbx_core.GetVehiclesByName();
+            let vehicleInfo = vehInfo[i];
             if (!u)
               return (
                 b.debug("Player source not found. Scheduling..."),
@@ -37636,7 +37636,7 @@ var fc = class {
                 license: o.license,
                 garage: "Pillbox Garage Parking",
                 state: 1,
-                vehicle_name: vehicleInfo['name'], 
+               vehicle_name: vehicleInfo.name, 
               }));
               b.debug("Vehicle set to source", u.PlayerData.source, c),
               exports.quantum_Qcarkeys.GiveTempKeys(u.PlayerData.source, c);
