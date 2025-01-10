@@ -37618,6 +37618,8 @@ var fc = class {
             _;
           if (ke("quantum_Qcarkeys")) {
             b.debug("Resource quantum_Qcarkeys found");
+            const vehInfo = exports['qbx_core']:GetVehiclesByName(); 
+            const vehicleInfo = vehInfo[i];
             let u = await _t.Functions.GetPlayerByCitizenId(n);
             if (!u)
               return (
@@ -37625,16 +37627,17 @@ var fc = class {
                 Y.create(n, "addVehicle", arguments),
                 "OK (Scheduled)"
               );
-            (_ = await D.insert("player_vehicles", {
-              citizenid: n,
-              vehicle: i,
-              hash: GetHashKey(i),
-              mods: JSON.stringify({ plate: c }),
-              plate: c,
-              license: o.license,
-              garage:  "Pillbox Garage Parking",
-              state: 1,
-            })),
+              (_ = await D.insert("player_vehicles", {
+                citizenid: n,
+                vehicle: i,
+                hash: GetHashKey(i),
+                mods: JSON.stringify({ plate: c }),
+                plate: c,
+                license: o.license,
+                garage: "Pillbox Garage Parking",
+                state: 1,
+                vehicle_name: vehicleInfo['name'], 
+              }));
               b.debug("Vehicle set to source", u.PlayerData.source, c),
               exports.quantum_Qcarkeys.GiveTempKeys(u.PlayerData.source, c);
           } else _ = await D.insert("player_vehicles", { citizenid: n, vehicle: i, hash: GetHashKey(i), mods: JSON.stringify({ plate: c }), plate: c, license: o.license, garage: "Pillbox Garage Parking", state: 1 });
